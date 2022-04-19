@@ -143,7 +143,8 @@ int main()
     glEnableVertexAttribArray(2);
 
     // Load textures
-    Model Tatami((char*)"Models/Tatami/Tatami.obj");
+    //Model Tatami((char*)"Models/Tatami/Tatami.obj");
+    Model Jarron((char*)"Models/Jarrón/Jarron.obj");
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -183,7 +184,8 @@ int main()
         model = glm::mat4(1);
         model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        Tatami.Draw(shader);
+        //Tatami.Draw(shader);
+        Jarron.Draw(shader);
 
         glBindVertexArray(0);
 
