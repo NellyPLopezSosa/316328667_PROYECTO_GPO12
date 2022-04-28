@@ -56,7 +56,7 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 4", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final", nullptr, nullptr);
 
     if (nullptr == window)
     {
@@ -143,8 +143,11 @@ int main()
     glEnableVertexAttribArray(2);
 
     // Load textures
-    //Model Tatami((char*)"Models/Tatami/Tatami.obj");
+    Model Casa((char*)"Models/Casa/Casa.obj");
+    Model Tatami((char*)"Models/Tatami/Tatami.obj");
     Model Jarron((char*)"Models/Jarrón/Jarron.obj");
+    Model Bambu((char*)"Models/Bambu/EstructuraBambu.obj");
+    Model Cajonera((char*)"Models/Cajonera/CajoneraConTextura.obj");
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -180,12 +183,49 @@ int main()
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
         // Draw the loaded model
+
         glm::mat4 model(1);
+
         model = glm::mat4(1);
         model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //Tatami.Draw(shader);
+        Casa.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(8.0f, 2.1f, 8.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Tatami.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(8.0f, 2.1f, -8.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Tatami.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(18.0f, 0.0f, 3.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Jarron.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 0.5f, 0.0f));
+        model = glm::translate(model, glm::vec3(3.5f, 2.64f, 17.4f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Cajonera.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(9.5f, 5.5f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Bambu.Draw(shader);
 
         glBindVertexArray(0);
 
