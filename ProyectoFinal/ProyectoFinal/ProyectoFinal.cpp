@@ -148,6 +148,7 @@ int main()
     Model Jarron((char*)"Models/Jarrón/Jarron.obj");
     Model Bambu((char*)"Models/Bambu/EstructuraBambu.obj");
     Model Cajonera((char*)"Models/Cajonera/CajoneraConTextura.obj");
+    Model Lampara((char*)"Models/Lampara/Lampara.obj");
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -226,6 +227,13 @@ int main()
         model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Bambu.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(3.0f, 2.0f, -9.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Lampara.Draw(shader);
 
         glBindVertexArray(0);
 
