@@ -143,7 +143,7 @@ int main()
     glEnableVertexAttribArray(2);
 
     // Load textures
-    Model Casa((char*)"Models/Casa/Casa.obj");
+    Model Casa((char*)"Models/Casa/CasaPrueba.obj");
     Model Tatami((char*)"Models/Tatami/Tatami.obj");
     Model Jarron((char*)"Models/Jarrón/Jarron.obj");
     Model Bambu((char*)"Models/Bambu/EstructuraBambu.obj");
