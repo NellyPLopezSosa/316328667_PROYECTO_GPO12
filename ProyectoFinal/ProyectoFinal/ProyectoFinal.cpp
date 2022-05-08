@@ -144,6 +144,7 @@ int main()
 
     // Load textures
     Model Casa((char*)"Models/Casa/CasaPrueba.obj");
+    Model PuertaEntrada((char*)"Models/Casa/PuertaEntrada.obj");
     Model Tatami((char*)"Models/Tatami/Tatami.obj");
     Model Jarron((char*)"Models/Jarrón/Jarron.obj");
     Model Bambu((char*)"Models/Bambu/EstructuraBambu.obj");
@@ -195,6 +196,13 @@ int main()
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Casa.Draw(shader);
 
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        model = glm::translate(model, glm::vec3(0.15f, 0.0f, 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        PuertaEntrada.Draw(shader);
+        
         model = glm::mat4(1);
         model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
         model = glm::translate(model, glm::vec3(8.0f, 2.1f, 8.0f));
