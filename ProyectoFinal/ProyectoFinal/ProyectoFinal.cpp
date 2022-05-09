@@ -41,8 +41,23 @@ bool firstMouse = true;
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 float rot = 0.0f;
-bool anim = false;
-bool anim2 = false;
+//Variables animación puerta principal
+float trans = 0.0f;
+bool anim = true;
+bool anim2 = true;
+//Variables animación puerta interior
+float trans2 = 0.0f;
+bool anim3 = true;
+bool anim4 = true;
+//Variables animación cajon armario
+float trans3 = 0.0f;
+bool anim5 = true;
+bool anim6 = true;
+//Variables animación puertas armario
+float trans4 = 0.0f;
+bool anim7 = true;
+bool anim8 = true;
+
 
 int main()
 {
@@ -143,8 +158,9 @@ int main()
     glEnableVertexAttribArray(2);
 
     // Load textures
-    Model Casa((char*)"Models/Casa/CasaPrueba.obj");
-    Model PuertaEntrada((char*)"Models/Casa/PuertaEntrada.obj");
+    Model Casa((char*)"Models/Casa/Casa.obj");
+    Model PuertaEntrada((char*)"Models/Casa/PuertaEntrada.obj"); 
+    Model PuertaInterna((char*)"Models/Casa/PuertaInterna.obj");
     Model Tatami((char*)"Models/Tatami/Tatami.obj");
     Model Jarron((char*)"Models/Jarrón/Jarron.obj");
     Model Bambu((char*)"Models/Bambu/EstructuraBambu.obj");
@@ -152,6 +168,8 @@ int main()
     Model Lampara((char*)"Models/Lampara/Lampara.obj");
     Model Fogata((char*)"Models/Fogata/Fogata.obj");
     Model Armario((char*)"Models/Armario/Armario.obj");
+    Model CajonArmario((char*)"Models/Armario/CajonArmario.obj");
+    Model PuertasArmario((char*)"Models/Armario/PuertasArmario.obj");
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -200,8 +218,17 @@ int main()
         model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
         model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
         model = glm::translate(model, glm::vec3(0.15f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, trans));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         PuertaEntrada.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        model = glm::translate(model, glm::vec3(0.09f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, trans2));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        PuertaInterna.Draw(shader);
         
         model = glm::mat4(1);
         model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -234,7 +261,7 @@ int main()
         model = glm::mat4(1);
         model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
         model = glm::translate(model, glm::vec3(9.5f, 5.5f, 0.0f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(0.9f, 0.9f, 0.9f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Bambu.Draw(shader);
 
@@ -258,6 +285,22 @@ int main()
         model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Armario.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(4.0f, 2.2f, -17.6f));
+        model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+        model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(trans3, 0.0f, 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        CajonArmario.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(4.0f, 2.2f, -17.6f));
+        model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+        model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, trans4));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        PuertasArmario.Draw(shader);
 
         glBindVertexArray(0);
 
@@ -309,21 +352,99 @@ void DoMovement()
         camera.ProcessKeyboard(RIGHT, deltaTime);
     }
 
+
+    //Animacion puerta principal
     if (anim)
     {
         if (anim2)
         {
-            if (rot < 90.0f)
+            if (trans < 0.0f)
             {
-                rot += 0.05f;
+                trans += 0.0008f;
             }
+            else
+                anim2 = false;
         }
         else
         {
-            if (rot > -90.0f)
+            if (trans > -1.8f)
             {
-                rot -= 0.05f;
+                trans -= 0.0008f;
             }
+            else
+                anim2 = true;
+        }
+
+    }
+
+    //Animacion puerta interior
+    if (anim3)
+    {
+        if (anim4)
+        {
+            if (trans2 < 0.0f)
+            {
+                trans2 += 0.0008f;
+            }
+            else
+                anim4 = false;
+        }
+        else
+        {
+            if (trans2 > -2.45f)
+            {
+                trans2 -= 0.0008f;
+            }
+            else
+                anim4 = true;
+        }
+
+    }
+
+    //Animacion cajon armario
+    if (anim5)
+    {
+        if (anim6)
+        {
+            if (trans3 < 1.8f)
+            {
+                trans3 += 0.0008f;
+            }
+            else
+                anim6 = false;
+        }
+        else
+        {
+            if (trans3 > 0.0f)
+            {
+                trans3 -= 0.0008f;
+            }
+            else
+                anim6 = true;
+        }
+
+    }
+
+    //Animacion puertas armario
+    if (anim7)
+    {
+        if (anim8)
+        {
+            if (trans4 < 0.0f)
+            {
+                trans4 += 0.0008f;
+            }
+            else
+                anim8 = false;
+        }
+        else
+        {
+            if (trans4 > -4.0f)
+            {
+                trans4 -= 0.0008f;
+            }
+            else
+                anim8 = true;
         }
 
     }
