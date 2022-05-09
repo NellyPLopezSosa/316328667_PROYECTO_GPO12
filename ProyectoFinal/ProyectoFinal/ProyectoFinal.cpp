@@ -33,7 +33,7 @@ void DoMovement();
 
 
 // Camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(30.0f, 10.0f, 15.0f));
 bool keys[1024];
 GLfloat lastX = 400, lastY = 300;
 bool firstMouse = true;
@@ -58,6 +58,7 @@ float trans4 = 0.0f;
 bool anim7 = true;
 bool anim8 = true;
 
+float tiempo;
 
 int main()
 {
@@ -110,6 +111,9 @@ int main()
     // Setup and compile our shaders
     Shader shader("Shaders/modelLoading.vs", "Shaders/modelLoading.frag");
     Shader lampshader("Shaders/lamp.vs", "Shaders/lamp.frag");
+    Shader Anim("Shaders/anim.vs", "Shaders/anim.frag");
+    Shader lampshader2("Shaders/lamp2.vs", "Shaders/lamp2.frag");
+    Shader lightingShader("Shaders/lighting.vs", "Shaders/lighting.frag");
 
 
 
@@ -157,9 +161,9 @@ int main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    // Load textures
+    // Load models
     Model Casa((char*)"Models/Casa/Casa.obj");
-    Model PuertaEntrada((char*)"Models/Casa/PuertaEntrada.obj"); 
+    Model PuertaEntrada((char*)"Models/Casa/PuertaEntrada.obj");
     Model PuertaInterna((char*)"Models/Casa/PuertaInterna.obj");
     Model Tatami((char*)"Models/Tatami/Tatami.obj");
     Model Jarron((char*)"Models/Jarrón/Jarron.obj");
@@ -167,9 +171,12 @@ int main()
     Model Cajonera((char*)"Models/Cajonera/CajoneraConTextura.obj");
     Model Lampara((char*)"Models/Lampara/Lampara.obj");
     Model Fogata((char*)"Models/Fogata/Fogata.obj");
+    Model Fuego((char*)"Models/Fogata/Fuego.obj");
     Model Armario((char*)"Models/Armario/Armario.obj");
     Model CajonArmario((char*)"Models/Armario/CajonArmario.obj");
     Model PuertasArmario((char*)"Models/Armario/PuertasArmario.obj");
+
+    // Load textures
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -273,13 +280,6 @@ int main()
         Lampara.Draw(shader);
 
         model = glm::mat4(1);
-        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::translate(model, glm::vec3(9.5f, 1.3f, -0.4f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        Fogata.Draw(shader);
-
-        model = glm::mat4(1);
         model = glm::translate(model, glm::vec3(4.0f, 2.2f, -17.6f));
         model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
         model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -302,7 +302,48 @@ int main()
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         PuertasArmario.Draw(shader);
 
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(9.5f, 1.3f, -0.4f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Fogata.Draw(shader);
+
         glBindVertexArray(0);
+
+        //Animación del fuego
+        // Get the uniform locations
+        GLint modelLoc = glGetUniformLocation(lightingShader.Program, "model");
+        GLint viewLoc = glGetUniformLocation(lightingShader.Program, "view");
+        GLint projLoc = glGetUniformLocation(lightingShader.Program, "projection");
+
+        // Pass the matrices to the shader
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+        model = glm::mat4(1);
+        glBindVertexArray(0);
+
+        // Also draw the lamp object, again binding the appropriate shader
+        lampshader.Use();
+        Anim.Use();
+        tiempo = glfwGetTime();
+        // Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+        modelLoc = glGetUniformLocation(Anim.Program, "model");
+        viewLoc = glGetUniformLocation(Anim.Program, "view");
+        projLoc = glGetUniformLocation(Anim.Program, "projection");
+        // Set matrices
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(9.5f, 1.3f, -0.4f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1f(glGetUniformLocation(Anim.Program, "time"), tiempo);
+        Fuego.Draw(lampshader);
+        Fuego.Draw(Anim);
+        glBindVertexArray(0);
+
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
