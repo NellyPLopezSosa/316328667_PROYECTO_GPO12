@@ -112,11 +112,10 @@ int main()
     Shader shader("Shaders/modelLoading.vs", "Shaders/modelLoading.frag");
     Shader lampshader("Shaders/lamp.vs", "Shaders/lamp.frag");
     Shader Anim("Shaders/anim.vs", "Shaders/anim.frag");
+    Shader Anim2("Shaders/anim2.vs", "Shaders/anim2.frag");
+    Shader Anim3("Shaders/anim3.vs", "Shaders/anim3.frag");
     Shader lampshader2("Shaders/lamp2.vs", "Shaders/lamp2.frag");
     Shader lightingShader("Shaders/lighting.vs", "Shaders/lighting.frag");
-
-
-
 
     // Load models
     glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
@@ -175,6 +174,9 @@ int main()
     Model Armario((char*)"Models/Armario/Armario.obj");
     Model CajonArmario((char*)"Models/Armario/CajonArmario.obj");
     Model PuertasArmario((char*)"Models/Armario/PuertasArmario.obj");
+    Model Olla((char*)"Models/Olla/Olla.obj");
+    Model Caldo((char*)"Models/Olla/Caldo.obj");
+    Model Ingredientes((char*)"Models/Olla/Ingredientes.obj");
 
     // Load textures
     GLuint texture;
@@ -267,10 +269,17 @@ int main()
 
         model = glm::mat4(1);
         model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::translate(model, glm::vec3(9.5f, 5.5f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.9f, 0.9f, 0.9f));
+        model = glm::translate(model, glm::vec3(9.5f, 6.8f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Bambu.Draw(shader);
+
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(9.44f, 3.54f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.7f, 0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Olla.Draw(shader);
 
         model = glm::mat4(1);
         model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -344,6 +353,50 @@ int main()
         Fuego.Draw(Anim);
         glBindVertexArray(0);
 
+        //Animación del caldo
+        // Also draw the lamp object, again binding the appropriate shader
+        lampshader.Use();
+        Anim2.Use();
+        tiempo = glfwGetTime();
+        // Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+        modelLoc = glGetUniformLocation(Anim.Program, "model");
+        viewLoc = glGetUniformLocation(Anim.Program, "view");
+        projLoc = glGetUniformLocation(Anim.Program, "projection");
+        // Set matrices
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(9.44f, 3.54f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.7f, 0.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1f(glGetUniformLocation(Anim.Program, "time"), tiempo);
+        Caldo.Draw(lampshader);
+        Caldo.Draw(Anim);
+        glBindVertexArray(0);
+
+
+        //Animación de ingredientes
+        // Also draw the lamp object, again binding the appropriate shader
+        lampshader.Use();
+        Anim3.Use();
+        tiempo = glfwGetTime();
+        // Get location objects for the matrices on the lamp shader (these could be different on a different shader)
+        modelLoc = glGetUniformLocation(Anim.Program, "model");
+        viewLoc = glGetUniformLocation(Anim.Program, "view");
+        projLoc = glGetUniformLocation(Anim.Program, "projection");
+        // Set matrices
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(9.44f, 3.54f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.7f, 0.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1f(glGetUniformLocation(Anim.Program, "time"), tiempo);
+        Ingredientes.Draw(lampshader);
+        Ingredientes.Draw(Anim);
+        glBindVertexArray(0);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);

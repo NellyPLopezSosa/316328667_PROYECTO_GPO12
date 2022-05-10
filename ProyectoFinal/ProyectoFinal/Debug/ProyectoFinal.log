@@ -1,16 +1,18 @@
 ﻿  ProyectoFinal.cpp
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(196,30): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(330,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(183,38): warning C4101: 'nrChannels': variable local sin referencia
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(183,9): warning C4101: 'textureWidth': variable local sin referencia
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(185,20): warning C4101: 'image': variable local sin referencia
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(183,23): warning C4101: 'textureHeight': variable local sin referencia
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(534,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(535,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(539,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(540,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(542,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(543,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(198,30): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(339,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(360,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(383,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(185,38): warning C4101: 'nrChannels': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(185,9): warning C4101: 'textureWidth': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(187,20): warning C4101: 'image': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(185,23): warning C4101: 'textureHeight': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(587,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(588,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(592,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(593,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(595,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(596,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
 soil2-debug.lib(etc1_utils.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(etc1_utils.obj)' o en 'C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 soil2-debug.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_DXT.obj)' o en 'C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
