@@ -28,10 +28,15 @@
     <None Include="Shaders\anim2.vs" />
     <None Include="Shaders\anim3.frag" />
     <None Include="Shaders\anim3.vs" />
+    <None Include="Shaders\lamp.frag" />
+    <None Include="Shaders\lamp.vs" />
     <None Include="Shaders\lighting.frag" />
     <None Include="Shaders\lighting.vs" />
     <None Include="Shaders\modelLoading.frag" />
     <None Include="Shaders\modelLoading.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
