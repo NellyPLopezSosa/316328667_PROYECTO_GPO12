@@ -1,1 +1,16 @@
-﻿  ProyectoFinal.vcxproj -> C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\Debug\ProyectoFinal.exe
+﻿  ProyectoFinal.cpp
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(272,30): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(507,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(530,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(555,29): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(259,38): warning C4101: 'nrChannels': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(259,9): warning C4101: 'textureWidth': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(261,20): warning C4101: 'image': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(259,23): warning C4101: 'textureHeight': variable local sin referencia
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(752,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(753,17): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(757,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(758,21): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(760,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\ProyectoFinal\ProyectoFinal.cpp(761,13): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+  ProyectoFinal.vcxproj -> C:\Users\nelly\Desktop\Repositorio\316328667_PROYECTO_GPO12\ProyectoFinal\Debug\ProyectoFinal.exe

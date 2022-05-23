@@ -13,6 +13,8 @@
 
 // Std. Includes
 #include <string>
+#include <iostream>
+#include <cmath>
 
 // GLEW
 #include <GL/glew.h>
@@ -131,6 +133,9 @@ int main()
     glfwSetKeyCallback(window, KeyCallback);
     glfwSetCursorPosCallback(window, MouseCallback);
 
+    // GLFW Options
+    //glfwSetInputMode( window, GLFW_CURSOR, GLFW_CURSOR_DISABLED );
+
     // Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
     glewExperimental = GL_TRUE;
 
@@ -234,6 +239,15 @@ Define el nombre de los modelos, y se localiza los objetos con extención .obj de
     Model Olla((char*)"Models/Olla/Olla.obj");
     Model Caldo((char*)"Models/Olla/Caldo.obj");
     Model Ingredientes((char*)"Models/Olla/Ingredientes.obj");
+
+    //Objetos segunda habitación
+    Model Escritorio((char*)"Models/Escritorio/Escritorio.obj");
+    Model Futon((char*)"Models/Futon/Futon.obj");
+    Model Katana((char*)"Models/Katana/KatanaCompleta.obj");
+    Model Cuadernos((char*)"Models/Cuadernos/Cuadernos.obj");
+    Model Cuaderno((char*)"Models/Cuadernos/Cuaderno.obj");
+    Model LamparaHabitacion((char*)"Models/LamparaHabitacion/Lampara.obj");
+
 
 /*
 >> Carga de texturas
@@ -399,7 +413,69 @@ Estos objetos emplean a shader
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Fogata.Draw(shader);
 
+        //Objetos segunda habitación
+        // Se dibuja el objeto Escritorio
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 0.5f, 0.0f));
+        model = glm::translate(model, glm::vec3(-13.0f, 2.0f, -6.0f));
+        model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Escritorio.Draw(shader);
+
+        // Se dibuja el objeto Futon
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(-7.0f, 2.0f, 5.0f));
+        model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Futon.Draw(shader);
+
+        // Se dibuja el objeto Katana
+        model = glm::mat4(1);        
+        model = glm::translate(model, glm::vec3(-9.0f, 2.5f, 5.0f));
+        model = glm::rotate(model, glm::radians(315.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(3.7f, 3.7f, 3.7f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Katana.Draw(shader);
+
+        // Se dibuja el objeto LamparaHabitacion
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 0.5f, 0.0f));
+        model = glm::translate(model, glm::vec3(-13.0f, 2.0f, -2.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        LamparaHabitacion.Draw(shader);
+
+        // Se dibuja el objeto Cuadernos
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 0.5f, 0.0f));
+        model = glm::translate(model, glm::vec3(-13.0f, 5.1f, -7.5f));
+        model = glm::scale(model, glm::vec3(0.4f, 0.5f, 0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Cuadernos.Draw(shader);
+
+        // Se dibuja el objeto Cuaderno
+        model = glm::mat4(1);
+        model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 0.5f, 0.0f));
+        model = glm::translate(model, glm::vec3(-13.0f, 5.1f, -5.5f));
+        model = glm::scale(model, glm::vec3(0.4f, 0.5f, 0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Cuaderno.Draw(shader);
+
         glBindVertexArray(0);
+
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        lampshader.Use();
+        //glm::mat4 model(1);
+        /*glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glBindVertexArray(VAO);*/
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+
 
 /*
 >> Generación de animaciones complejas con uso de los shaders "lightingShader" y "Anim" correspondientes a cada objeto
